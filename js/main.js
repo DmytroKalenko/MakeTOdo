@@ -2,17 +2,35 @@ const AddBTN = document.querySelector('.addTask input[type=button]'),
     Input = document.querySelector('.addTask input[type=text]'),
     TasksList = document.querySelector('.tasks');
 
+let tasksArray = [];    
 
-AddBTN.addEventListener('click', function(e) {
-    const Task = document.createElement('li');
-    TasksList.appendChild(Task);
+    function setTasks(){
+       
+        let task = {
+            task: Input.value,
+            check: false,
+        };
+        tasksArray.push(task)
+        Input.value='';
+         showTasks();
+    };
 
+    AddBTN.addEventListener('click',setTasks);
+    
 
+    function showTasks(){
+        let out='';
+        for (var element in tasksArray ){
+            out+= `<li><input type="checkbox"> ${tasksArray[element].task} <button>X</button></li>`;
+        }
+       TasksList.innerHTML = out;
+    };
 
-    const Cheack = document.createElement('input');
-    Cheack.setAttribute("type", "checkbox");
-    Task.innerHTML = `<input type="checkbox" name="" id="">${Input.value}<span>X</span>`;
+// let check = document.querySelectorAll("li input[type=checkbox]");
+    // function check(){
 
+    // };
+   
 
-
-});
+ 
+   
