@@ -56,5 +56,17 @@ let Check = document.querySelectorAll(".tasks li input[type=checkbox]");
     };
     closing()
 
- 
+    
+// //    function Del (){
+
+//     let Obj = JSON.parse(localStorage.getItem("tasks"));
+//    if (Obj[1]["task"]!= undefined){
+//     delete Obj[0]
+//    }
    
+   
+    
+
+//    localStorage.setItem("tasks", JSON.stringify(Obj) );
+
+// //    }
