@@ -49,10 +49,9 @@ let Check = document.querySelectorAll(".tasks li input[type=checkbox]");
     function closing(){
         for(var i= 0; i<Closes.length; i++){
             Closes[i].addEventListener("click", function(){              
-               this.parentElement.style.display = "none"
-                        
-            })
-             console.log(Closes[i]);
+               this.parentElement.style.display = "none";
+
+            })          
         }
     };
     closing()
