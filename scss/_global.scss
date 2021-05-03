@@ -4,7 +4,11 @@ html {
 }
 
 body {
-    background-color: #f4f6f5;
+    background-image: url(../images/1.jpeg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
 }
 
 a {
@@ -13,6 +17,7 @@ a {
 }
 
 * {
+    box-sizing: border-box;
     outline: none;
     padding: 0;
     margin: 0;

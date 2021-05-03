@@ -1,4 +1,4 @@
-const AddBTN = document.querySelector('.addTask input[type=button]'),
+const AddBTN = document.querySelector('.addTask button'),
     Input = document.querySelector('.addTask input[type=text]'),
     TasksList = document.querySelector('.tasks');
 

@@ -1,18 +1,58 @@
 @import "vars";
 @import "global";
 @import "fonts";
-.container {
-    max-width: 1000px;
+
+.container{
+    height: 100%;
     margin: 0 auto;
-    border: 2px solid green;
-    .title {}
-    ;
-    .addTask {}
-    ;
-    ul {
-        list-style: none;
-        li {
-            margin: 10px 0;
+    max-width: 1000px;
+    .modal_window {
+        
+       
+        padding-bottom: 18px;
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: white;
+     
+        .title {
+            height: 100px;
+            background-color: #0158a5;
+            display: flex;
+            align-items: center;
+            color: white;
+            font-size: 30px;
+            padding: 0 20px;
+            justify-content: space-between;
+            
+        }
+        
+        .addTask {
+            padding: 0 20px;
+            input[type=text]{
+                width: 30%;
+                height: 100%;
+                color: #0158a5;
+                font-size: 22px;
+                &::placeholder{
+                     color: #0158a5;
+                }
+            }
+        }
+        
+        ul {
+            list-style: none;
+            padding: 0 20px;
+            li {
+                margin: 20px 0;
+                border-bottom: 2px solid grey;
+                padding-bottom:9px;
+                font-size:22px;
+                input[type=checkbox]{margin-right: 20px};
+                button{
+                    float: right;
+                }
+            }
         }
     }
 }
