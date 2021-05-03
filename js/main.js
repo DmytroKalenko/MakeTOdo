@@ -2,17 +2,24 @@ const AddBTN = document.querySelector('.addTask input[type=button]'),
     Input = document.querySelector('.addTask input[type=text]'),
     TasksList = document.querySelector('.tasks');
 
-let tasksArray = [];    
 
+let tasksArray = []; 
+ if (localStorage.getItem('tasks')!=undefined){
+     tasksArray = JSON.parse(localStorage.getItem("tasks"))
+     showTasks();
+    };
+ 
     function setTasks(){
        
-        let task = {
+        let task = { 
             task: Input.value,
             check: false,
         };
         tasksArray.push(task)
         Input.value='';
+        
          showTasks();
+         localStorage.setItem("tasks", JSON.stringify(tasksArray) );
     };
 
     AddBTN.addEventListener('click',setTasks);
@@ -26,11 +33,29 @@ let tasksArray = [];
        TasksList.innerHTML = out;
     };
 
-// let check = document.querySelectorAll("li input[type=checkbox]");
-    // function check(){
+let Check = document.querySelectorAll(".tasks li input[type=checkbox]");
+    function checking(){
+        for(var i= 0; i<Check.length; i++){
+            Check[i].addEventListener("change", function(){              
+                if(this.checked){this.parentElement.style.textDecoration = "line-through"}
+                else if(this.parentElement.style.textDecoration = "none");           
+            })
+             console.log(Check[i]);
+        }
+    };
+    checking()
 
-    // };
-   
+    let Closes = document.querySelectorAll(".tasks li button");
+    function closing(){
+        for(var i= 0; i<Closes.length; i++){
+            Closes[i].addEventListener("click", function(){              
+               this.parentElement.style.display = "none"
+                        
+            })
+             console.log(Closes[i]);
+        }
+    };
+    closing()
 
  
    
