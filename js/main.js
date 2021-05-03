@@ -59,11 +59,7 @@ let Check = document.querySelectorAll(".tasks li input[type=checkbox]");
     
 // //    wather
 
-fetch("http://api.openweathermap.org/data/2.5/weather?q=Taglag&appid=51e0fc8246f5f18489d57289d2145462")
-.then(function(resp){return resp.json()})
-.then(function(data){
-    console.log(data);
-});
+
 
 //geolocation
 
@@ -71,13 +67,34 @@ function myLocation(){
 
 const getLocation = (resoult)=>{
     console.log(resoult);
-    let Lat = resoult.coord.lat;
-    let Lon = resoult.coord.lon
-}	;
- navigator.geolocation.getCurrentPosition(getLocation, console.log);
+    let Lat = resoult.coords.latitude;
+    let Lon = resoult.coords.longitude;
+    console.log(Lat, Lon);
+    
+    fetch(`https://api.opencagedata.com/geocode/v1/json?q=${Lat}+${Lon}&key=7a8980e030af475e9c79a7e6a0161f00`)
+        .then(function(resp){return resp.json()})
+        .then(function(data2){
+        console.log(data2);
+        city = data2.results[0].components.city;
+        console.log(city);
+    
+    fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=51e0fc8246f5f18489d57289d2145462`)
+        .then(function(resp){return resp.json()})
+        .then(function(data){
+        console.log(data);
+});
+});
+
+
 };
+
+
+
+ navigator.geolocation.getCurrentPosition(getLocation, console.log);
+}
+
+
+
 myLocation()
 
 
-
-https://api.opencagedata.com/geocode/v1/json?q=LAT+LNG&key=7a8980e030af475e9c79a7e6a0161f00
