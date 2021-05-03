@@ -28,7 +28,7 @@ let tasksArray = [];
     function showTasks(){
         let out='';
         for (var element in tasksArray ){
-            out+= `<li><input type="checkbox"> ${tasksArray[element].task} <button>X</button></li>`;
+            out+= `<li><input type="checkbox"> ${tasksArray[element].task} <button></button></li>`;
         }
        TasksList.innerHTML = out;
     };
@@ -57,16 +57,27 @@ let Check = document.querySelectorAll(".tasks li input[type=checkbox]");
     closing()
 
     
-// //    function Del (){
+// //    wather
 
-//     let Obj = JSON.parse(localStorage.getItem("tasks"));
-//    if (Obj[1]["task"]!= undefined){
-//     delete Obj[0]
-//    }
-   
-   
-    
+fetch("http://api.openweathermap.org/data/2.5/weather?q=Taglag&appid=51e0fc8246f5f18489d57289d2145462")
+.then(function(resp){return resp.json()})
+.then(function(data){
+    console.log(data);
+});
 
-//    localStorage.setItem("tasks", JSON.stringify(Obj) );
+//geolocation
 
-// //    }
+function myLocation(){
+
+const getLocation = (resoult)=>{
+    console.log(resoult);
+    let Lat = resoult.coord.lat;
+    let Lon = resoult.coord.lon
+}	;
+ navigator.geolocation.getCurrentPosition(getLocation, console.log);
+};
+myLocation()
+
+
+
+https://api.opencagedata.com/geocode/v1/json?q=LAT+LNG&key=7a8980e030af475e9c79a7e6a0161f00

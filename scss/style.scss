@@ -2,6 +2,12 @@
 @import "global";
 @import "fonts";
 
+
+@mixin size{
+    height: 20px;
+                width: 20px;
+};
+
 .container{
     height: 100%;
     margin: 0 auto;
@@ -29,10 +35,14 @@
         
         .addTask {
             padding: 0 20px;
+            button{
+                @include size();
+                margin-right: 20px;
+            }
             input[type=text]{
                 width: 30%;
                 height: 100%;
-                color: #0158a5;
+                
                 font-size: 22px;
                 &::placeholder{
                      color: #0158a5;
@@ -48,9 +58,14 @@
                 border-bottom: 2px solid grey;
                 padding-bottom:9px;
                 font-size:22px;
-                input[type=checkbox]{margin-right: 20px};
+                input[type=checkbox]{margin-right: 20px;
+                    @include size()};
                 button{
+                    background-color: transparent;
+                    @include size();
                     float: right;
+                    background-image: url(../images/icons/close1.svg);
+                    background-size: cover;
                 }
             }
         }
