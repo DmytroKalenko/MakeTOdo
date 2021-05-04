@@ -19,6 +19,7 @@ function setTasks() {
     Input.value = '';
 
     showTasks();
+    closing();
     localStorage.setItem("tasks", JSON.stringify(tasksArray));
 };
 
@@ -45,9 +46,10 @@ function checking() {
 };
 checking()
 
-let Closes = document.querySelectorAll(".tasks li button");
 
 function closing() {
+    let Closes = document.querySelectorAll(".tasks li button");
+
     for (var i = 0; i < Closes.length; i++) {
         Closes[i].addEventListener("click", function() {
             this.parentElement.style.display = "none";
