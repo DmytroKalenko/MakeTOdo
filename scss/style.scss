@@ -29,6 +29,11 @@
             justify-content: space-between;
             .aboutweather {
                 display: flex;
+                height: 100%;
+                align-items: center;
+                .weather{
+                    margin-right: 10px;
+                }
                 .weather__blok {
                     height: 100%;
                     width: 55px;

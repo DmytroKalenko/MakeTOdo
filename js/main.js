@@ -84,7 +84,7 @@ function myLocation() {
                     .then(function(resp) { return resp.json() })
                     .then(function(data) {
                         console.log(data);
-                        weather.innerHTML = data.name + Math.round(data.main.temp - 273.15) + '&deg';
+                        weather.innerHTML = data.name +  " " + Math.round(data.main.temp - 273.15) +'&deg';
                         weatherIcon.style.cssText = `background : url(https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png) center no-repeat;
                         background-size: cover;`
 
@@ -95,3 +95,7 @@ function myLocation() {
     navigator.geolocation.getCurrentPosition(getLocation, console.log);
 }
 myLocation();
+
+
+
+
