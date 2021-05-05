@@ -59,7 +59,7 @@ const deleteTask = index => {
 
 
 AddBTN.addEventListener("click", () => {
-    tasks.push(new Task(Input.value));
+    if (Input.value.length > 0) { tasks.push(new Task(Input.value)); }
     updateLS();
     show();
     Input.value = "";
@@ -104,38 +104,22 @@ function myLocation() {
 myLocation();
 
 
+window.addEventListener("keypress", function(e) {
+    if (e.key == "Enter") {
+        if (Input.value.length > 0) { tasks.push(new Task(Input.value)); }
+        updateLS();
+        show();
+        Input.value = "";
+    };
+})
 
-
-
-
-
-// let MyArray = [{ task: "1", check: false },
-//     { task: "2", check: false },
-//     { task: "", check: false },
-//     { task: "Work", check: false }
-// ]
-
-// for (let i = 0; i < MyArray.length; i++) {
-//     if (MyArray[i].task === "Work") {
-//         //console.log(i);
-//         MyArray[i].check = true;
-//         //console.log(MyArray[i]);
-//     }
+// if (Input.value.length > 0) {
+//     window.addEventListener("keypress", function(e) {
+//         if (e.key == "Enter") {
+//             tasks.push(new Task(Input.value));
+//             updateLS();
+//             show();
+//             Input.value = "";
+//         };
+//     })
 // };
-// //console.log(MyArray, typeof(MyArray));
-// let b = JSON.stringify(MyArray)
-
-//console.log(b, typeof(b));
-
-
-// MyArray.find(function() {
-
-// })
-
-
-
-// let a = "Work";
-// let obj = { task: "Work", check: false };
-// if (MyArray[i].task === "Work") {
-//     console.log("YESSS");
-// }
