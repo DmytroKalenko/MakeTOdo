@@ -36,9 +36,10 @@ function showTasks() {
     TasksList.innerHTML = out;
 };
 
-let Check = document.querySelectorAll(".tasks li input[type=checkbox]");
+
 
 function checking() {
+    let Check = document.querySelectorAll(".tasks li input[type=checkbox]");
     for (var i = 0; i < Check.length; i++) {
 
         if (Check[i].checked) {
@@ -137,12 +138,16 @@ function myLocation() {
                 console.log(data2);
                 city = data2.results[0].components.city;
                 console.log(city);
-
-                fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=51e0fc8246f5f18489d57289d2145462`)
+               
+                fetch( `http://api.openweathermap.org/data/2.5/weather?lat=${Lat}&lon=${Lon}&appid=51e0fc8246f5f18489d57289d2145462`)
                     .then(function(resp) { return resp.json() })
                     .then(function(data) {
                         console.log(data);
+<<<<<<< HEAD
                         weather.innerHTML = data.name + " " + Math.round(data.main.temp - 273.15) + '&deg';
+=======
+                        weather.innerHTML = city +  " " + Math.round(data.main.temp - 273.15) +'&deg';
+>>>>>>> 29aafa6a3c970e44551414700acee84094327813
                         weatherIcon.style.cssText = `background : url(https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png) center no-repeat;
                         background-size: cover;`
 
