@@ -3,119 +3,67 @@ const AddBTN = document.querySelector('.addTask button'),
     TasksList = document.querySelector('.tasks');
 
 
-let tasksArray = [];
-if (localStorage.getItem('tasks') != undefined) {
-    tasksArray = JSON.parse(localStorage.getItem("tasks"))
-    showTasks();
 
+let tasks;
+
+!localStorage.tasks ? tasks = [] : tasks = JSON.parse(localStorage.getItem("tasks"))
+
+let todoItemElem = [];
+
+function Task(description) {
+    this.description = description;
+    this.completed = false;
 };
 
-function setTasks() {
-
-    let task = {
-        task: Input.value,
-        check: false,
-    };
-    tasksArray.push(task)
-    Input.value = '';
-
-    showTasks();
-    closing();
-    localStorage.setItem("tasks", JSON.stringify(tasksArray));
-    checking();
-};
-
-AddBTN.addEventListener('click', setTasks);
-
-
-function showTasks() {
-    let out = '';
-    for (var element in tasksArray) {
-        out += `<li><input type="checkbox"><p>${tasksArray[element].task}</p><button></button></li>`;
-    }
-    TasksList.innerHTML = out;
-};
-
-
-
-function checking() {
-    let Check = document.querySelectorAll(".tasks li input[type=checkbox]");
-    for (var i = 0; i < Check.length; i++) {
-
-        if (Check[i].checked) {
-            Check[i].nextElementSibling.style.textDecoration = "line-through"
-        };
-
-        Check[i].addEventListener("change", function() {
-            let txtContent = this.parentElement.textContent;
-            if (this.checked) {
-                this.parentElement.style.textDecoration = "line-through";
-                // this.nextElementSibling.classList.add("ACTIVE");
-                console.log(txtContent);
-
-                for (let i = 0; i < tasksArray.length; i++) {
-                    if (tasksArray[i].task == txtContent) {
-                        console.log("covpadaet");
-                        if (tasksArray[i].check == false) {
-                            tasksArray[i].check = true;
-
-                        } else if (tasksArray[i].check = false);
-
-                        console.log(tasksArray);
-                    };
-                };
-                localStorage.setItem("tasks", JSON.stringify(tasksArray));
-
-
-            } else if (this.parentElement.style.textDecoration = "none");
-        })
-
-
-        for (let i = 0; i < tasksArray.length; i++) {
-
-            if (tasksArray[i].check == true) {
-                // Check[i].nextElementSibling.classList.add("ACTIVE");
-                console.log(Check[i]);
-                Check[i].setAttribute("checked", "true")
-                    // this.parentElement.style.textDecoration = "line-through"
-                    // } else if (this.parentElement.style.textDecoration = "line-through");
-
-
-            };
-        };
-
-
-    }
-};
-checking();
-
-
-function checkingCheck() {
-    for (let i = 0; i < tasksArray.length; i++) {
-        if (tasksArray[i].check == true) {
-            console.log(tasksArray[i].task + "=true");
-            // this.parentElement.style.textDecoration = "line-through"
-            // } else if (this.parentElement.style.textDecoration = "line-through");
-
-
-        };
-    };
+const createTemplate = (element, index) => {
+    return `
+                <li class = "${element.completed ? 'checked' : ""} ">
+                    <input onclick="completeTask(${index})" type="checkbox" name="" id="" ${element.completed ? 'checked' : ""}>
+                    <p>${element.description}</p>
+                    <button onclick="deleteTask(${index})" >DEl</button>
+                </li>
+    `
 }
-checkingCheck();
 
-
-function closing() {
-    let Closes = document.querySelectorAll(".tasks li button");
-
-    for (var i = 0; i < Closes.length; i++) {
-        Closes[i].addEventListener("click", function() {
-            this.parentElement.style.display = "none";
-
-        })
+const show = () => {
+    TasksList.innerHTML = "";
+    if (tasks.length > 0) {
+        tasks.forEach((element, index) => {
+            TasksList.innerHTML += createTemplate(element, index);
+        });
+        todoItemElem = document.querySelectorAll("li");
     }
 };
-closing()
+show();
+const updateLS = () => {
+    localStorage.setItem('tasks', JSON.stringify(tasks))
+};
 
+const completeTask = index => {
+    tasks[index].completed = !tasks[index].completed;
+    if (tasks[index].completed) {
+        todoItemElem[index].classList.add('checked');
+    } else {
+        todoItemElem[index].classList.remove('checked');
+    }
+    updateLS();
+    show();
+}
+
+
+const deleteTask = index => {
+    tasks.splice(index, 1);
+    updateLS();
+    show();
+}
+
+
+AddBTN.addEventListener("click", () => {
+    tasks.push(new Task(Input.value));
+    updateLS();
+    show();
+    Input.value = "";
+})
 
 
 
