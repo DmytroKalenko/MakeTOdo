@@ -83,9 +83,14 @@
                 }
                 .item {
                     display: flex;
+                    width: 97%;
                     input[type=checkbox] {
                         margin-right: 20px;
                         @include size()
+                    }
+                    p {
+                        width: 94%;
+                        word-wrap: break-word;
                     }
                     p.ACTIVE {
                         text-decoration: line-through;
