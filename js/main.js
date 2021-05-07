@@ -18,9 +18,12 @@ function Task(description) {
 const createTemplate = (element, index) => {
     return `
                 <li class = "${element.completed ? 'checked' : ""} ">
+                    <div class='item'>
                     <input onclick="completeTask(${index})" type="checkbox" name="" id="" ${element.completed ? 'checked' : ""}>
                     <p>${element.description}</p>
-                    <button onclick="deleteTask(${index})" >DEl</button>
+                    </div>
+                    
+                    <button onclick="deleteTask(${index})" ></button>
                 </li>
     `
 }
