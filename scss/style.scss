@@ -16,6 +16,7 @@
         top: 50%;
         transform: translateY(-50%);
         background-color: white;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         .title {
             position: relative;
             height: 100px;
@@ -78,7 +79,6 @@
                 display: flex;
                 justify-content: space-between;
                 &.checked {
-                    background-color: greenyellow;
                     text-decoration: line-through;
                 }
                 .item {
@@ -86,7 +86,10 @@
                     width: 97%;
                     input[type=checkbox] {
                         margin-right: 20px;
-                        @include size()
+                        @include size();
+                        position: relative;
+                        top: 50%;
+                        transform: translateY(-50%);
                     }
                     p {
                         width: 94%;
@@ -98,10 +101,11 @@
                 }
                 button {
                     background-color: transparent;
-                    @include size();
+                    width: 20px;
                     float: right;
                     background-image: url(../images/icons/close1.svg);
-                    background-size: cover;
+                    background-position: center;
+                    background-repeat: no-repeat;
                 }
             }
         }
@@ -119,10 +123,51 @@
         .modal_window {
             .title {
                 font-size: 23px;
+            }
+            .addTask {
+                input[type=text] {
+                    width: 88%;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 470px) {
+    .container {
+        .modal_window {
+            padding-bottom: 1px;
+            p {
+                padding: 5px 0;
+            }
+            .title {
+                flex-direction: column;
                 .aboutweather {
-                    .weather__blok {
-                        .inform {}
+                    width: 100%;
+                    justify-content: space-between;
+                    padding-bottom: 5px;
+                    .weather {
+                        font-size: 20px;
                     }
+                }
+            }
+            ul {
+                li {
+                    font-size: 15px;
+                    margin: 10px 0;
+                    padding-bottom: 6px;
+                }
+            }
+            ul,
+            .addTask {
+                padding: 0px 20px;
+                margin: 14px 0;
+            }
+            .addTask {
+                padding: 0px 20px;
+                input[type=text] {
+                    width: 82%;
+                    font-size: 15px;
                 }
             }
         }
