@@ -90,7 +90,7 @@ function myLocation() {
                 city = data2.results[0].components.city;
                 // console.log(city);
 
-                fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${Lat}&lon=${Lon}&appid=51e0fc8246f5f18489d57289d2145462`)
+                fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${Lat}&lon=${Lon}&appid=51e0fc8246f5f18489d57289d2145462`)
                     .then(function(resp) { return resp.json() })
                     .then(function(data) {
                         // console.log(data);
