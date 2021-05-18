@@ -65,7 +65,7 @@
                           display: flex;
                           justify-content: space-between;
                           padding: 0 20px;
-                          input{}
+                          align-items: center;
                           p{display: inline-block;
                         font-size: $FontSizeItems;}
                          
@@ -148,6 +148,7 @@
                 .item {
                     display: flex;
                     width: 97%;
+                    align-items: center;
                     input[type=checkbox] {
                         margin-right: 20px;
                         @include size();

@@ -85,15 +85,15 @@ function myLocation() {
         // console.log(Lat, Lon);
 
         fetch(`https://api.opencagedata.com/geocode/v1/json?q=${Lat}+${Lon}&key=7a8980e030af475e9c79a7e6a0161f00`)
-            .then(function(resp) { return resp.json() })
-            .then(function(data2) {
+            .then(function (resp) { return resp.json() })
+            .then(function (data2) {
                 // console.log(data2);
                 city = data2.results[0].components.city;
                 // console.log(city);
 
                 fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${Lat}&lon=${Lon}&appid=51e0fc8246f5f18489d57289d2145462`)
-                    .then(function(resp) { return resp.json() })
-                    .then(function(data) {
+                    .then(function (resp) { return resp.json() })
+                    .then(function (data) {
                         // console.log(data);
                         weather.innerHTML = city + " " + Math.round(data.main.temp - 273.15) + '&deg';
                         weatherIcon.style.cssText = `background : url(https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png) center no-repeat;
@@ -108,7 +108,7 @@ function myLocation() {
 myLocation();
 
 
-window.addEventListener("keypress", function(e) {
+window.addEventListener("keypress", function (e) {
     if (e.key == "Enter") {
         if (Input.value.length > 0) { tasks.push(new Task(Input.value)); }
         updateLS();
@@ -129,7 +129,7 @@ window.addEventListener("keypress", function(e) {
 // };
 const BtnAddList = document.querySelector('.addlist button');
 const InputList = document.querySelector('.addlist input');
-const Lists =  document.querySelector('.lists')
+const Lists = document.querySelector('.lists')
 
 
 let lists;
@@ -140,14 +140,13 @@ let listsItemElem = [];
 
 function List(description) {
     this.description = description;
-    this.completed = false;
+
 };
 
 const createList = (element, index) => {
     return `
-                <li class = "${element.completed ? 'checked' : "notchecked"} ">
+                <li  data-list_number="${index}">
                     <div class='item'>
-                    
                     <p>${element.description}</p>
                     <button class='btnClose' onclick="deleteList(${index})" ></button>
                     </div>    
@@ -177,6 +176,7 @@ const deleteList = index => {
     lists.splice(index, 1);
     updateListS();
     showLISTS();
+    ShowInfo();
 }
 
 
@@ -184,6 +184,29 @@ BtnAddList.addEventListener("click", () => {
     if (InputList.value.length > 0) { lists.push(new List(InputList.value)); }
     updateListS();
     showLISTS();
+    ShowInfo();
     InputList.value = "";
 })
 
+
+
+
+function RemoveClass() {
+    const MyLists = document.querySelectorAll(".lists li")
+    MyLists.forEach(element => {
+        if (element.classList.contains("Active")) {
+            element.classList.remove("Active");
+        };
+    });
+}
+
+function ShowInfo() {
+    const MyLists = document.querySelectorAll(".lists li")
+    MyLists.forEach(element => {
+        element.addEventListener('click', function () {
+            RemoveClass();
+            this.classList.add("Active")
+        })
+    })
+}
+ShowInfo();   
