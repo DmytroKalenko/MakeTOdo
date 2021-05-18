@@ -6,6 +6,25 @@
     width: 20px;
 }
 
+.btnClose {
+    background-color: transparent;
+    width: 20px;
+    @include size();
+    background-image: url(../images/icons/close1.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.Add{
+    background-image: url(../images/icons/plus.svg);
+    background-size: cover;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    margin-right: 20px;
+    @include size()
+}
+
+
 .container {
     height: 100%;
     margin: 0 auto;
@@ -21,8 +40,38 @@
             display: flex;
            .container__inner{
                width: 40%;
-               button{
-                   @include size()
+               .addlist{
+                padding: 10px 20px;
+                display: flex;
+                align-items: flex-end;
+                 
+                input{
+                       width: 75%;
+                       font-size: $FontSizeItems;
+                       &::placeholder{
+                        color: $MainColor;   
+
+                       }
+                   }
+
+               }
+               
+               .lists{
+                   padding: 10px 0;
+                  li{ 
+                     margin: 10px 0; 
+                      list-style: none;
+                      .item{
+                          display: flex;
+                          justify-content: space-between;
+                          padding: 0 20px;
+                          input{}
+                          p{display: inline-block;
+                        font-size: $FontSizeItems;}
+                         
+                      }
+                     
+                  } 
                }
            } 
            .item__list{
@@ -38,7 +87,7 @@
         .title {
             position: relative;
             height: 100px;
-            background-color: #0158a5;
+            background-color: $MainColor;
             display: flex;
             align-items: center;
             color: white;
@@ -72,16 +121,12 @@
         }
         .addTask {
             
-            button {
-                @include size();
-                margin-right: 20px;
-            }
             input[type=text] {
                 width: 88%;
                 height: 100%;
-                font-size: 22px;
+                font-size: $FontSizeItems;
                 &::placeholder {
-                    color: #0158a5;
+                    color: $MainColor;
                 }
             }
         }
@@ -94,7 +139,7 @@
                 margin: 20px 0;
                 border-bottom: 2px solid grey;
                 padding-bottom: 9px;
-                font-size: 22px;
+                font-size: $FontSizeItems;
                 display: flex;
                 justify-content: space-between;
                 &.checked {
@@ -118,14 +163,7 @@
                         text-decoration: line-through;
                     }
                 }
-                button {
-                    background-color: transparent;
-                    width: 20px;
-                    float: right;
-                    background-image: url(../images/icons/close1.svg);
-                    background-position: center;
-                    background-repeat: no-repeat;
-                }
+               
             }
         }
     }

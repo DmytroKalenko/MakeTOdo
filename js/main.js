@@ -21,9 +21,10 @@ const createTemplate = (element, index) => {
                     <div class='item'>
                     <input onclick="completeTask(${index})" type="checkbox" name="" id="" ${element.completed ? 'checked' : ""}>
                     <p>${element.description}</p>
+                    <button class='btnClose' onclick="deleteTask(${index})" ></button>
                     </div>
                     
-                    <button onclick="deleteTask(${index})" ></button>
+                   
                 </li>
     `
 }
@@ -144,13 +145,13 @@ function List(description) {
 
 const createList = (element, index) => {
     return `
-                <li class = "${element.completed ? 'checked' : ""} ">
+                <li class = "${element.completed ? 'checked' : "notchecked"} ">
                     <div class='item'>
-                    <input onclick="completeLists(${index})" type="checkbox" name="" id="" ${element.completed ? 'checked' : ""}>
-                    <p>${element.description}</p>
-                    </div>
                     
-                    <button onclick="deleteList(${index})" ></button>
+                    <p>${element.description}</p>
+                    <button class='btnClose' onclick="deleteList(${index})" ></button>
+                    </div>    
+                    
                 </li>
     `
 }
@@ -169,16 +170,7 @@ const updateListS = () => {
     localStorage.setItem('lists', JSON.stringify(lists))
 };
 
-const completeLists = index => {
-    lists[index].completed = !lists[index].completed;
-    if (lists[index].completed) {
-        todoItemElem[index].classList.add('checked');
-    } else {
-        todoItemElem[index].classList.remove('checked');
-    }
-    updateListS();
-    showLISTS();
-}
+
 
 
 const deleteList = index => {
