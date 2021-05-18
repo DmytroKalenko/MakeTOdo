@@ -17,6 +17,24 @@
         transform: translateY(-50%);
         background-color: white;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        .content{
+            display: flex;
+           .container__inner{
+               width: 40%;
+               button{
+                   @include size()
+               }
+           } 
+           .item__list{
+            width: 100%;
+            .title__item__list{
+                padding: 10px 0;
+                font-size: 26px;
+                text-align: center;
+            }
+           }
+        }
+        
         .title {
             position: relative;
             height: 100px;
@@ -53,13 +71,13 @@
             }
         }
         .addTask {
-            padding: 0 40px;
+            
             button {
                 @include size();
                 margin-right: 20px;
             }
             input[type=text] {
-                width: 95%;
+                width: 88%;
                 height: 100%;
                 font-size: 22px;
                 &::placeholder {
@@ -67,10 +85,11 @@
                 }
             }
         }
-        ul {
+        .tasks {
             list-style: none;
-            padding: 0 40px;
+            padding: 0 20px 0 0;
             margin: 20px 0;
+            
             li {
                 margin: 20px 0;
                 border-bottom: 2px solid grey;

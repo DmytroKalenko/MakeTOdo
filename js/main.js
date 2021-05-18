@@ -126,3 +126,72 @@ window.addEventListener("keypress", function(e) {
 //         };
 //     })
 // };
+const BtnAddList = document.querySelector('.addlist button');
+const InputList = document.querySelector('.addlist input');
+const Lists =  document.querySelector('.lists')
+
+
+let lists;
+
+!localStorage.lists ? lists = [] : lists = JSON.parse(localStorage.getItem("lists"))
+
+let listsItemElem = [];
+
+function List(description) {
+    this.description = description;
+    this.completed = false;
+};
+
+const createList = (element, index) => {
+    return `
+                <li class = "${element.completed ? 'checked' : ""} ">
+                    <div class='item'>
+                    <input onclick="completeLists(${index})" type="checkbox" name="" id="" ${element.completed ? 'checked' : ""}>
+                    <p>${element.description}</p>
+                    </div>
+                    
+                    <button onclick="deleteList(${index})" ></button>
+                </li>
+    `
+}
+
+const showLISTS = () => {
+    Lists.innerHTML = "";
+    if (lists.length > 0) {
+        lists.forEach((element, index) => {
+            Lists.innerHTML += createList(element, index);
+        });
+        todoItemElem = document.querySelectorAll("li");
+    }
+};
+showLISTS();
+const updateListS = () => {
+    localStorage.setItem('lists', JSON.stringify(lists))
+};
+
+const completeLists = index => {
+    lists[index].completed = !lists[index].completed;
+    if (lists[index].completed) {
+        todoItemElem[index].classList.add('checked');
+    } else {
+        todoItemElem[index].classList.remove('checked');
+    }
+    updateListS();
+    showLISTS();
+}
+
+
+const deleteList = index => {
+    lists.splice(index, 1);
+    updateListS();
+    showLISTS();
+}
+
+
+BtnAddList.addEventListener("click", () => {
+    if (InputList.value.length > 0) { lists.push(new List(InputList.value)); }
+    updateListS();
+    showLISTS();
+    InputList.value = "";
+})
+
