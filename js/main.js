@@ -140,6 +140,7 @@ let listsItemElem = [];
 
 function List(description) {
     this.description = description;
+    this.completed = false;
 
 };
 
@@ -205,7 +206,9 @@ function ShowInfo() {
     MyLists.forEach(element => {
         element.addEventListener('click', function () {
             RemoveClass();
-            this.classList.add("Active")
+            this.classList.add("Active");
+            document.querySelector('.title__item__list').innerHTML = this.outerText
+         
         })
     })
 }
