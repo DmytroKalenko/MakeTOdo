@@ -218,18 +218,16 @@
 }
 
 @media screen and (max-width: 470px) {
-    p,
-    input,
-    .container .modal_window .content .container__inner .addlist input,
-    .container .modal_window .content .container__inner .lists li .item p {
-        font-size: 16px;
-    }
-    .container .modal_window .content .item__list .title__item__list {
-        font-size: 18px;
-    }
     .container {
         .modal_window {
             padding-bottom: 1px;
+            .content {
+                .item__list {
+                    background-color: #d2dff7;
+                    padding: 0 10px;
+                    border-radius: 10px;
+                }
+            }
             .title {
                 flex-direction: column;
                 .aboutweather {
@@ -248,16 +246,38 @@
                     padding-bottom: 6px;
                 }
             }
-            ul,
             .addTask {
-                padding: 0px 20px;
-                margin: 14px 0;
-            }
-            .addTask {
-                padding: 0px 20px;
+                padding: 0;
+                margin: 10px 0;
                 input[type="text"] {
                     width: 82%;
-                    font-size: 15px;
+                    font-size: 22px;
+                    text-align: center;
+                    border: 2px solid transparent;
+                    &:focus {
+                        transition: all .5s;
+                        border: 2px solid black;
+                    }
+                }
+            }
+            .content {
+                padding: 10px;
+                .container__inner {
+                    .addlist {
+                        padding: 10px 0px;
+                        input[type="text"] {
+                            text-align: center;
+                            border: 2px solid transparent;
+                            &:focus {
+                                transition: all .5s;
+                                border: 2px solid black;
+                            }
+                        }
+                    }
+                    .lists {
+                        padding: 0;
+                        margin: 0;
+                    }
                 }
             }
         }
